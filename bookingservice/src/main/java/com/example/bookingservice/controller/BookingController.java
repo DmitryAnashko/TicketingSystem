@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class BookingController {
 
-    private BookingService bookingService;
+    private final BookingService bookingService;
 
     @Autowired
     public BookingController(BookingService bookingService){
