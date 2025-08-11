@@ -26,9 +26,9 @@ public class BookingRequest {
 
     @NotNull(message = "Number of tickets is required")
     @Min(value = 1, message = "At least 1 ticket must be booked")
-    private Integer numberOfTickets;
+    private Long numberOfTickets;
 
-    @NotNull(message = "Booking date is required")
+    /*@NotNull(message = "Booking date is required")
     @FutureOrPresent(message = "Booking date must be in the present or future")
-    private LocalDateTime bookingDate;
+    private LocalDateTime bookingDate;*/
 }
