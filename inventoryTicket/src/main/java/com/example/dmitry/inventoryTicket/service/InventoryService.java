@@ -26,6 +26,7 @@ public class InventoryService {
     public List<EventInventoryResponse> getAllEvents(){
         final List<Event> events = eventRepository.findAll();
         return events.stream().map(event -> EventInventoryResponse.builder()
+                .eventId(event.getId())
                 .eventName(event.getEventName())
                 .capacity(event.getLeftCapacity())
                 .venue(event.getVenue())
@@ -42,5 +43,17 @@ public class InventoryService {
                 .totalCapacity(venue.getTotalCapacity())
                 .build();
 
+    }
+    public EventInventoryResponse getEventInventory(Long eventId){
+        final Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new EntityNotFoundException("Event with id: " + eventId + " not found"));
+
+        return EventInventoryResponse.builder()
+                .eventName(event.getEventName())
+                .capacity(event.getLeftCapacity())
+                .venue(event.getVenue())
+                .ticketPrice(event.getTicketPrice())
+                .eventId(event.getId())
+                .build();
     }
 }
