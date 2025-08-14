@@ -1,0 +1,2 @@
+com\example\shared\event\BookingEvent.class
+com\example\shared\event\BookingEvent$BookingEventBuilder.class

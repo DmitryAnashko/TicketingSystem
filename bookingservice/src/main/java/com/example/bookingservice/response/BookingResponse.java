@@ -1,4 +1,4 @@
-package com.example.bookingservice.bookingDto;
+package com.example.bookingservice.response;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -17,9 +17,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class BookingResponse {
-    @NotNull(message = "Booking ID is required")
+    /*@NotNull(message = "Booking ID is required")
     @Positive(message = "Booking ID must be a positive number")
-    private Long bookingId;
+    private Long bookingId;*/
 
     @NotNull(message = "Event ID is required")
     @Positive(message = "Event ID must be a positive number")
@@ -32,7 +32,7 @@ public class BookingResponse {
     @NotNull(message = "Number of tickets is required")
     @Min(value = 1, message = "At least 1 ticket must be booked")
     @Max(value = 10, message = "Cannot book more than 10 tickets at once")
-    private Integer numberOfTickets;
+    private Long numberOfTickets;
 
     @NotNull(message = "Booking date is required")
     @PastOrPresent(message = "Booking date cannot be in the future")

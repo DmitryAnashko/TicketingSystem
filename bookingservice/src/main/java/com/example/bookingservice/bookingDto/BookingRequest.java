@@ -25,7 +25,7 @@ public class BookingRequest {
     private Long userId;
 
     @NotNull(message = "Number of tickets is required")
-    @Min(value = 1, message = "At least 1 ticket must be booked")
+    @Min(value = 0, message = "At least 1 ticket must be booked")
     private Long numberOfTickets;
 
     /*@NotNull(message = "Booking date is required")

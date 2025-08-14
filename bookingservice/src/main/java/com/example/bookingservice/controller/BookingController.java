@@ -1,7 +1,7 @@
 package com.example.bookingservice.controller;
 
 import com.example.bookingservice.bookingDto.BookingRequest;
-import com.example.bookingservice.bookingDto.BookingResponse;
+import com.example.bookingservice.response.BookingResponse;
 import com.example.bookingservice.service.BookingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class BookingController {
     public BookingController(BookingService bookingService){
         this.bookingService = bookingService;
     }
-    @PostMapping("/booking")
+    @PostMapping(consumes = "application/json", produces = "application/json", path ="/booking")
     public BookingResponse createBooking(@Valid @RequestBody BookingRequest request){
         return bookingService.createBooking(request);
     }
