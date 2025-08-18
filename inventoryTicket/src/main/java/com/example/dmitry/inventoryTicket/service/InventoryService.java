@@ -7,11 +7,14 @@ import com.example.dmitry.inventoryTicket.repository.VenueRepository;
 import com.example.dmitry.inventoryTicket.response.EventInventoryResponse;
 import com.example.dmitry.inventoryTicket.response.VenueInventoryResponse;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class InventoryService {
 
@@ -55,5 +58,12 @@ public class InventoryService {
                 .ticketPrice(event.getTicketPrice())
                 .eventId(event.getId())
                 .build();
+    }
+    public void updateEventCapacity(Long eventId, Long ticketsBooked){
+        final Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new EntityNotFoundException("Event with id: " + eventId + " not found"));
+        event.setLeftCapacity(event.getLeftCapacity() - ticketsBooked);
+        eventRepository.saveAndFlush(event);
+        log.info("Updated event capacity for event id: {} with tickets booked : {}",eventId, ticketsBooked);
     }
 }
